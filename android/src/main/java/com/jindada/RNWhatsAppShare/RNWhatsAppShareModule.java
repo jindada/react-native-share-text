@@ -71,6 +71,22 @@ public class RNWhatsAppShareModule extends ReactContextBaseJavaModule implements
     intent.putExtra(Intent.EXTRA_TEXT, "this is my text to send.");
     intent.setType("text/plain");
     intent.setPackage("com.whatsapp");
+
     getCurrentActivity().startActivityForResult(intent, SHARE_QUEST_CODE);
+  }
+
+  @Override
+  public void onHostDestroy() {
+    // Do nothing
+  }
+
+  @Override
+  public void onHostResume() {
+    // Do nothing
+  }
+
+  @Override
+  public void onHostPause() {
+    // Do nothing
   }
 }
