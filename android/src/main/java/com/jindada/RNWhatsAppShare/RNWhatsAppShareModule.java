@@ -7,6 +7,7 @@ import com.facebook.react.bridge.NativeModule;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.BaseActivityEventListener;
 import com.facebook.react.bridge.ActivityEventListener;
+import com.facebook.react.bridge.LifecycleEventListener;
 import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class RNWhatsAppShareModule extends ReactContextBaseJavaModule {
+public class RNWhatsAppShareModule extends ReactContextBaseJavaModule implements LifecycleEventListener {
 
   private static final int SHARE_QUEST_CODE = 1;
 
@@ -32,9 +33,9 @@ public class RNWhatsAppShareModule extends ReactContextBaseJavaModule {
     @Override
     public void onActivityResult(Activity activity, int requestCode, int resultCode, Intent data) {
       if (promise != null) {
-        if (resultCode == RESULT_OK) {
+        if (resultCode == Activity.RESULT_OK) {
           if (requestCode == SHARE_QUEST_CODE) {
-            promise.resolve();
+            promise.resolve(null);
           }
         } else {
           if (requestCode == SHARE_QUEST_CODE){
@@ -49,7 +50,6 @@ public class RNWhatsAppShareModule extends ReactContextBaseJavaModule {
   public RNWhatsAppShareModule(ReactApplicationContext reactContext) {
     super(reactContext);
     this.reactContext = reactContext;
-
     reactContext.addActivityEventListener(mActivityEventListener);
     reactContext.addLifecycleEventListener(this);
   }
@@ -71,6 +71,6 @@ public class RNWhatsAppShareModule extends ReactContextBaseJavaModule {
     intent.putExtra(Intent.EXTRA_TEXT, "this is my text to send.");
     intent.setType("text/plain");
     intent.setPackage("com.whatsapp");
-    startActivityForResult(intent, SHARE_QUEST_CODE);
+    getCurrentActivity().startActivityForResult(intent, SHARE_QUEST_CODE);
   }
 }
