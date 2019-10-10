@@ -66,7 +66,7 @@ public class RNWhatsAppShareModule extends ReactContextBaseJavaModule implements
     String title = customFields.getString("title");
     String url = customFields.getString("url");
 
-    Intent intent = new Intent();
+    Intent intent = new Intent(reactContext);
     intent.setAction(Intent.ACTION_SEND);
     intent.putExtra(Intent.EXTRA_TEXT, "this is my text to send.");
     intent.setType("text/plain");
