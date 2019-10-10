@@ -1,4 +1,4 @@
-package com.jindada.RNWhatsAppShare;
+package com.jindada.RNShareText;
 
 import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.JavaScriptModule;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class RNWhatsAppSharePackage implements ReactPackage {
+public class RNShareTextPackage implements ReactPackage {
 
   @Override
   public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
@@ -26,7 +26,7 @@ public class RNWhatsAppSharePackage implements ReactPackage {
   public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
     List<NativeModule> modules = new ArrayList<>();
 
-    modules.add(new RNWhatsAppShareModule(reactContext));
+    modules.add(new RNShareTextModule(reactContext));
 
     return modules;
   }

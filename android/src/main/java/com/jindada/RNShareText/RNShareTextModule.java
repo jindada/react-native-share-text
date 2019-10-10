@@ -1,4 +1,4 @@
-package com.jindada.RNWhatsAppShare;
+package com.jindada.RNShareText;
 
 import android.content.Intent;
 import android.app.Activity;
@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class RNWhatsAppShareModule extends ReactContextBaseJavaModule implements LifecycleEventListener {
+public class RNShareTextModule extends ReactContextBaseJavaModule implements LifecycleEventListener {
 
   private static final int SHARE_QUEST_CODE = 1;
 
@@ -60,7 +60,7 @@ public class RNWhatsAppShareModule extends ReactContextBaseJavaModule implements
   }
 
   @ReactMethod
-  public void share(ReadableMap customFields, Promise promise) {
+  public void shareWhatsApp(ReadableMap customFields, Promise promise) {
     this.promise = promise;
 
     String title = customFields.getString("title");
@@ -72,7 +72,31 @@ public class RNWhatsAppShareModule extends ReactContextBaseJavaModule implements
     intent.setType("text/plain");
     intent.setPackage("com.whatsapp");
 
-    getCurrentActivity().startActivityForResult(intent, SHARE_QUEST_CODE);
+    try {
+      getCurrentActivity().startActivityForResult(intent, SHARE_QUEST_CODE);
+    } catch(Exception e) {
+      promise.reject(ERROR_NOT_FOUND, "Not Found");
+    }
+  }
+
+  @ReactMethod
+  public void shareTwitter(ReadableMap customFields, Promise promise) {
+    this.promise = promise;
+
+    String title = customFields.getString("title");
+    String url = customFields.getString("url");
+
+    Intent intent = new Intent(reactContext);
+    intent.setAction(Intent.ACTION_SEND);
+    intent.putExtra(Intent.EXTRA_TEXT, "this is my text to send.");
+    intent.setType("text/plain");
+    intent.setPackage("com.twitter.android");
+
+    try {
+      getCurrentActivity().startActivityForResult(intent, SHARE_QUEST_CODE);
+    } catch(Exception e) {
+      promise.reject(ERROR_NOT_FOUND, "Not Found");
+    }
   }
 
   @Override

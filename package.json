@@ -1,19 +1,19 @@
 {
-  "name": "react-native-whatsapp-share",
-  "version": "0.0.4",
-  "description": "react-native WhatsApp share with callback",
+  "name": "react-native-share-text",
+  "version": "0.0.1",
+  "description": "react-native share text support whatsapp and twitter",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jindada/react-native-whatsapp-share.git"
+    "url": "git+https://github.com/jindada/react-native-share-text.git"
   },
   "author": "https://github.com/jindada/",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/jindada/react-native-whatsapp-share/issues"
+    "url": "https://github.com/jindada/react-native-share-text/issues"
   },
-  "homepage": "https://github.com/jindada/react-native-whatsapp-share#readme"
+  "homepage": "https://github.com/jindada/react-native-share-text#readme"
 }
