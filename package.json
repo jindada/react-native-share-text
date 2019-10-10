@@ -1,6 +1,6 @@
 {
   "name": "react-native-share-text",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "react-native share text support whatsapp and twitter",
   "main": "index.js",
   "scripts": {

@@ -26,6 +26,7 @@ public class RNShareTextModule extends ReactContextBaseJavaModule implements Lif
   private final ReactApplicationContext reactContext;
 
   private static final String ERROR_USER_CANCELLED = "USER_CANCELLED";
+  private static final String ERROR_NOT_FOUND = "NOT_FOUND";
 
   private Promise promise;
 
@@ -56,19 +57,17 @@ public class RNShareTextModule extends ReactContextBaseJavaModule implements Lif
 
   @Override
   public String getName() {
-    return "RNWhatsAppShare";
+    return "RNShareText";
   }
 
   @ReactMethod
   public void shareWhatsApp(ReadableMap customFields, Promise promise) {
     this.promise = promise;
+    String content = customFields.getString("content");
 
-    String title = customFields.getString("title");
-    String url = customFields.getString("url");
-
-    Intent intent = new Intent(reactContext);
+    Intent intent = new Intent();
     intent.setAction(Intent.ACTION_SEND);
-    intent.putExtra(Intent.EXTRA_TEXT, "this is my text to send.");
+    intent.putExtra(Intent.EXTRA_TEXT, content);
     intent.setType("text/plain");
     intent.setPackage("com.whatsapp");
 
@@ -82,13 +81,11 @@ public class RNShareTextModule extends ReactContextBaseJavaModule implements Lif
   @ReactMethod
   public void shareTwitter(ReadableMap customFields, Promise promise) {
     this.promise = promise;
+    String content = customFields.getString("content");
 
-    String title = customFields.getString("title");
-    String url = customFields.getString("url");
-
-    Intent intent = new Intent(reactContext);
+    Intent intent = new Intent();
     intent.setAction(Intent.ACTION_SEND);
-    intent.putExtra(Intent.EXTRA_TEXT, "this is my text to send.");
+    intent.putExtra(Intent.EXTRA_TEXT, content);
     intent.setType("text/plain");
     intent.setPackage("com.twitter.android");
 
