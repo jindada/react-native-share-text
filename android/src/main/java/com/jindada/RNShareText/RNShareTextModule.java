@@ -47,7 +47,7 @@ public class RNShareTextModule extends ReactContextBaseJavaModule implements Lif
     }
   };
 
-  public RNWhatsAppShareModule(ReactApplicationContext reactContext) {
+  public RNShareTextModule(ReactApplicationContext reactContext) {
     super(reactContext);
     this.reactContext = reactContext;
     reactContext.addActivityEventListener(mActivityEventListener);
